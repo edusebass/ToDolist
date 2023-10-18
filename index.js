@@ -16,9 +16,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-    res.render("index");
+
+app.get("/works", (req, res) => {
+    res.render("works");
 });
+
+let items = [];
+
+app.get("/", (req, res) => {
+    res.render("index", { items: items });
+});
+
+app.post("/", (req, res) => {
+    const newItemValue = req.body.newItem;
+    items.push(newItemValue);
+    res.redirect("/"); 
+});
+
 
 
 app.listen(port, () => {

@@ -8,6 +8,15 @@
 </head>
 <body>
     <%- include("partials/header.ejs") %>
+    <h1> <%= new Date().toDateString()  %></h1>
+
+    <input type="checkbox"> <%= locals.items %> </input>
+    <% for (const [index, item] of items.entries()) { %>
+        <div class="boxInput">
+            <input type="checkbox" id="item<%= index %>" name="item<%= index %>">
+            <label for="item<%= index %>"><%= item %></label>
+        </div>
+    <% } %>
     <%- include("partials/form.ejs") %>
 
 
