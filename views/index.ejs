@@ -5,19 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do list</title>
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <%- include("partials/header.ejs") %>
-    <h1> <%= new Date().toDateString()  %></h1>
-
-    <% for (const [index, item] of items.entries()) { %>
-        <div class="boxInput">
-            <input type="checkbox" id="item<%= index %>" name="item<%= index %>">
-            <label for="item<%= index %>"><%= item %></label>
-        </div>
-    <% } %>
-    <%- include("partials/form.ejs") %>
-
+    <div class="encabezado">
+        <h1> <%= new Date().toDateString()  %></h1>
+    </div>
+   
+    <div class="box">
+        <% for (const [index, item] of items.entries()) { %>
+            <div class="boxTask">
+                <input type="checkbox" id="item<%= index %>" name="item" class="itemTask">
+                <p class="task-description" for="item<%= index %>"><%= item %></p>
+            </div>
+        <% } %>
+    </div>
+    
+    <div class="box">
+        <form class="item" action="/" method="post">
+            <input type="text" name="newItem" placeholder="Nueva tarea" autocomplete="off">
+            <button type="submit">+</button>
+        </form>
+    </div>
 
 </body>
 </html>

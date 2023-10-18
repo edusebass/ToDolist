@@ -5,12 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do list</title>
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <%  %>
     <%- include("partials/header.ejs") %>
-    <%- include("partials/form.ejs") %>
-
-
+    <div class="encabezado">
+        <h1> Works List </h1>
+    </div>
+   
+    <div class="box">
+        <% for (const [indexwork, itemwork] of itemsWork.entries()) { %>
+            <div class="boxTask">
+                <input type="checkbox" id="item<%= indexwork %>" name="item" class="itemTask">
+                <p class="task-description" for="item<%= indexwork %>"><%= itemwork %></p>
+            </div>
+        <% } %>
+    </div>
+    
+    <div class="box">
+        <form class="item" action="/works" method="post">
+            <input type="text" name="newItem" placeholder="Nueva tarea" autocomplete="off">
+            <button type="submit">+</button>
+        </form>
+    </div><%- include("partials/form.ejs") %>
 </body>
 </html>
